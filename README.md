@@ -53,12 +53,11 @@ Auto-Start: Implements service persistence via Alpine's local.d mechanism, ensur
 🛠️ Installation
 Run the following command in your Alpine terminal:
 
-Bash
 apk add --no-cache bash && wget -N --no-check-certificate https://raw.githubusercontent.com/wangkewdg2/S-UI-for-alpine/main/install.sh && chmod +x install.sh && bash install.sh
+
 📖 Usage
 After installation, simply type the following command to manage your panel:
 
-Bash
 s-ui
 Supported Operations:
 
