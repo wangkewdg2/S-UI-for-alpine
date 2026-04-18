@@ -18,11 +18,9 @@ S-UI for Alpine Linux
 
 
 apk add --no-cache bash && wget -N --no-check-certificate https://raw.githubusercontent.com/wangkewdg2/S-UI-for-alpine/main/install.sh && chmod +x install.sh && bash install.sh
+
 📖 使用说明
-安装完成后，在终端输入以下命令即可进入循环管理菜单：
-
-
-s-ui
+安装完成后，在终端输入以下命令即可进入循环管理菜单：s-ui
 
 
 支持的操作：
@@ -56,9 +54,8 @@ Run the following command in your Alpine terminal:
 apk add --no-cache bash && wget -N --no-check-certificate https://raw.githubusercontent.com/wangkewdg2/S-UI-for-alpine/main/install.sh && chmod +x install.sh && bash install.sh
 
 📖 Usage
-After installation, simply type the following command to manage your panel:
+After installation, simply type the following command to manage your panel:s-ui
 
-s-ui
 Supported Operations:
 
 Start / Stop / Restart the panel.
