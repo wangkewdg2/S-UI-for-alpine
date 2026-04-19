@@ -25,7 +25,7 @@ install_base() {
     apk add --no-cache wget curl tar tzdata ca-certificates libc6-compat gcompat
 }
 
-# 2. 生成适配 Alpine 的循环管理脚本
+# 2. 生成适配 Alpine 的循环管理脚本 (修复了选项 1, 2, 4)
 generate_menu_script() {
     cat > /usr/local/s-ui/s-ui.sh << 'EOF'
 #!/bin/bash
@@ -60,6 +60,22 @@ while true; do
     
     case $choice in
         0) exit 0 ;;
+        1|2) 
+            echo -e "${yellow}正在重新运行安装脚本进行更新...${plain}"
+            wget -N --no-check-certificate https://raw.githubusercontent.com/wangkewdg2/S-UI-for-alpine/main/install.sh && bash install.sh
+            exit 0
+            ;;
+        4)
+            read -p "确定要卸载 s-ui 吗? [y/n]: " un_confirm
+            if [[ "$un_confirm" == "y" ]]; then
+                pkill -9 sui
+                rm -rf /usr/local/s-ui/
+                rm -f /usr/bin/s-ui
+                rm -f /etc/local.d/s-ui.start
+                echo -e "${green}s-ui 已成功卸载。${plain}"
+                exit 0
+            fi
+            ;;
         6) read -p "用户:" u; read -p "密码:" p; /usr/local/s-ui/sui admin -username $u -password $p ;;
         7) /usr/local/s-ui/sui admin -show ;;
         9) 
@@ -92,7 +108,6 @@ install_s-ui() {
     config_port=${config_port:-20270}
     
     read -p "2. 面板路径 (例如 /ke/): " config_path
-    # 路径格式化处理
     config_path=${config_path:-/}
     [[ ! $config_path =~ ^/ ]] && config_path="/$config_path"
     [[ ! $config_path =~ /$ ]] && config_path="$config_path/"
